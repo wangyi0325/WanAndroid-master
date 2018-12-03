@@ -5,4 +5,7 @@
     <string name="login">登  录</string>
     <string name="no_account_register">还没账号?点此注册</string>
     <string name="username_incorrect">用户名或密码长度必须大于6位</string>
+    <string name="please_reenter_password">请再次输入密码</string>
+    <string name="register_ok">注册成功,请您登陆</string>
+    <string name="register">注  册</string>
 </resources>

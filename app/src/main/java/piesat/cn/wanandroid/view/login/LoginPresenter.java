@@ -14,7 +14,7 @@ import piesat.cn.wanandroid.util.ConstantUtil;
 
 /**
  * 作者：wangyi
- * <p>
+ * <p>  登陆功能的Persenter
  * 邮箱：wangyi@piesat.cn
  */
 public class LoginPresenter extends BasePresenter<LoginContract.LoginView> implements LoginContract.LPresenter {

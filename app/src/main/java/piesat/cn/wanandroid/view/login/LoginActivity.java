@@ -12,7 +12,7 @@ import piesat.cn.wanandroid.util.toast.ToastUtil;
 
 /**
  * 作者：wangyi
- * <p>
+ * <p>  登陆页面
  * 邮箱：wangyi@piesat.cn
  */
 public class LoginActivity extends BaseActivity implements LoginContract.LoginView {
