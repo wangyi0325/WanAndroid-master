@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WanAndroid</string>
+    <string name="please_enter_username">请输入用户名</string>
+    <string name="please_enter_password">请输入密码</string>
+    <string name="login">登  录</string>
+    <string name="no_account_register">还没账号?点此注册</string>
+    <string name="username_incorrect">用户名或密码长度必须大于6位</string>
+</resources>
