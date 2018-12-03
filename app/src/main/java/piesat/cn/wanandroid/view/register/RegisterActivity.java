@@ -20,6 +20,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
     EditText et_password;
     @BindView(R.id.et_ensure_password)
     EditText et_ensure_password;
+
     @BindView(R.id.btn_register)
     Button btn_register;
     /**
