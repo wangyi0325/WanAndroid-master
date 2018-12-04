@@ -2,6 +2,7 @@ package piesat.cn.wanandroid.model;
 import io.reactivex.Observable;
 import piesat.cn.wanandroid.data.BaseResp;
 import piesat.cn.wanandroid.data.bean.UserInfo;
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -29,7 +30,6 @@ public interface ApiService {
     @POST("user/login")
     @FormUrlEncoded
     Observable<BaseResp<UserInfo>> login(@Field("username") String username, @Field("password") String password);
-
     /**
      * 注册
      */

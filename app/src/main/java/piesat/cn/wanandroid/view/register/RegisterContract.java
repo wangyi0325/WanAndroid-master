@@ -2,6 +2,7 @@ package piesat.cn.wanandroid.view.register;
 
 import piesat.cn.wanandroid.base.baseMvp.BasePre;
 import piesat.cn.wanandroid.base.baseMvp.BaseView;
+import piesat.cn.wanandroid.data.bean.UserInfo;
 
 /**
  * 作者：wangyi
@@ -11,7 +12,7 @@ import piesat.cn.wanandroid.base.baseMvp.BaseView;
 public class RegisterContract {
 
     public interface RegisterView extends BaseView{
-        void registerOk(String Data);
+        void registerOk(UserInfo userInfo);
         void registerErr(String ErrData);
     }
 

@@ -8,7 +8,10 @@ import butterknife.OnClick;
 import piesat.cn.wanandroid.R;
 import piesat.cn.wanandroid.base.BaseActivity;
 import piesat.cn.wanandroid.data.bean.UserInfo;
+import piesat.cn.wanandroid.util.JumpUtil;
 import piesat.cn.wanandroid.util.toast.ToastUtil;
+import piesat.cn.wanandroid.view.main.MainActivity;
+import piesat.cn.wanandroid.view.register.RegisterActivity;
 
 /**
  * 作者：wangyi
@@ -49,6 +52,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 break;
             case R.id.tv_register:
                 //跳转注册页面
+                JumpUtil.overlay(context, RegisterActivity.class);
+                finish();
                 break;
         }
     }
@@ -89,7 +94,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
     @Override
     public void loginOk(UserInfo userInfo) {
-        ToastUtil.show(context, "成功");
+        JumpUtil.overlay(context, MainActivity.class);
+        finish();
     }
 
     @Override

@@ -37,6 +37,7 @@ public class WelcomeActivity extends BaseActivity {
                     @Override
                     public void onNext(Long aLong) {
                         JumpUtil.overlay(WelcomeActivity.this, LoginActivity.class);
+                        finish();
                     }
 
                     @Override
