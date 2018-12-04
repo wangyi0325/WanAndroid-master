@@ -1,25 +1,47 @@
 package piesat.cn.wanandroid.view.main;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
+import butterknife.BindView;
 import piesat.cn.wanandroid.R;
 import piesat.cn.wanandroid.base.BaseActivity;
+import piesat.cn.wanandroid.view.main.home.HomeFragment;
+import piesat.cn.wanandroid.view.main.mine.MineFragment;
+import piesat.cn.wanandroid.view.main.project.ProjectFragment;
+import piesat.cn.wanandroid.view.main.system.SystemFragment;
+import piesat.cn.wanandroid.view.main.wx.WxFragment;
 
-
+/**
+ * 作者：wangyi
+ * <p>  主页面的Activity
+ * 邮箱：wangyi@piesat.cn
+ */
 public class MainActivity extends BaseActivity {
+    @BindView(R.id.fl_layout)
+    FrameLayout frameLayout;
+    @BindView(R.id.navigation)
+    BottomNavigationView navigation;
 
     private TextView mTextMessage;
-   /**
+    private List<Fragment> fragmentList;
+    private int lastIndex;
+
+    /**
     *Base基类的回调方法
     */
     @Override
@@ -29,15 +51,27 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        initFragment();
+        selectFragment(0);
     }
 
     @Override
     protected void initData() {
 
+    }
+
+  /**
+   *初始化Fragment
+   */
+    private void initFragment() {
+        fragmentList = new ArrayList<>();
+        fragmentList.add(HomeFragment.getInstance());
+        fragmentList.add(SystemFragment.getInstance());
+        fragmentList.add(WxFragment.getInstance());
+        fragmentList.add(ProjectFragment.getInstance());
+        fragmentList.add(MineFragment.getInstance());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -47,24 +81,38 @@ public class MainActivity extends BaseActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    selectFragment(0);
                     return true;
                 case R.id.navigation_system:
-                    mTextMessage.setText(R.string.title_system);
+                    selectFragment(1);
                     return true;
                 case R.id.navigation_wx:
-                    mTextMessage.setText(R.string.title_wx);
+                    selectFragment(2);
                     return true;
                 case R.id.navigation_demo:
-                    mTextMessage.setText(R.string.title_demo);
+                    selectFragment(3);
                     return true;
                 case R.id.navigation_mine:
-                    mTextMessage.setText(R.string.title_mine);
+                    selectFragment(4);
                     return true;
             }
             return false;
         }
     };
+
+    private void selectFragment(int i) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment fragment = fragmentList.get(i);
+        Fragment lastFragment = fragmentList.get(lastIndex);
+        lastIndex = i;
+        transaction.hide(lastFragment);
+        if(!fragment.isAdded()){
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            transaction.add(R.id.fl_layout, fragment);
+        }
+         transaction.show(fragment);
+         transaction.commitAllowingStateLoss();
+    }
 
 
 
